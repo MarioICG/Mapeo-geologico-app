@@ -1,0 +1,143 @@
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="m2 13 10 5 10-5"/><path d="m2 17.5 10 5 10-5" opacity=".55"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12"/><circle cx="4" cy="6" r="1.2"/><circle cx="4" cy="12" r="1.2"/><circle cx="4" cy="18" r="1.2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-export" viewBox="0 0 24 24"><path d="M12 15V3m0 0-4 4m4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></symbol>
+    <symbol id="i-gps" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></symbol>
+    <symbol id="i-zin" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-zout" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/></symbol>
+    <symbol id="i-fit" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4Z"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></symbol>
+  </defs>
+</svg>
+
+<div id="app">
+  <div id="map" role="application" aria-label="Mapa"></div>
+
+  <svg id="crosshair" viewBox="0 0 38 38" aria-hidden="true">
+    <g stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="M19 1v12M19 25v12M1 19h12M25 19h12"/></g>
+    <g stroke="#14201d" stroke-width="1.6" stroke-linecap="round"><path d="M19 1v12M19 25v12M1 19h12M25 19h12"/></g>
+  </svg>
+
+  <div id="infobar" aria-live="polite">
+    <div id="coords">—</div>
+    <div id="gpsline" class="gps-line">GPS: buscando señal…</div>
+  </div>
+
+  <div id="fabs">
+    <button class="fab" id="btn-zin" aria-label="Acercar"><svg class="i"><use href="#i-zin"/></svg></button>
+    <button class="fab" id="btn-zout" aria-label="Alejar"><svg class="i"><use href="#i-zout"/></svg></button>
+    <button class="fab" id="btn-gps" aria-label="Ir a mi ubicación" aria-pressed="false"><svg class="i"><use href="#i-gps"/></svg></button>
+  </div>
+
+  <section id="welcome" hidden>
+    <button class="icon-btn x" id="welcome-close" aria-label="Cerrar"><svg class="i"><use href="#i-close"/></svg></button>
+    <h2>Primeros pasos</h2>
+    <ol>
+      <li><b>Capas → + MBTiles</b>: carga tu carta geológica o imagen satelital y ajusta su transparencia.</li>
+      <li><b>+ Dato</b>: anota lo que mediste con la brújula (N30E/45SE, 030/45, 120/45…).</li>
+      <li><b>Mantén presionado el mapa</b> para ubicar un dato en ese punto exacto.</li>
+    </ol>
+  </section>
+
+  <nav id="bottombar" aria-label="Principal">
+    <button class="tab" id="tab-layers"><svg class="i"><use href="#i-layers"/></svg>Capas</button>
+    <button class="tab" id="tab-data"><svg class="i"><use href="#i-list"/></svg>Datos</button>
+    <button class="tab-add" id="tab-add"><svg class="i"><use href="#i-plus"/></svg>Dato</button>
+    <button class="tab" id="tab-export"><svg class="i"><use href="#i-export"/></svg>Exportar</button>
+    <button class="tab" id="tab-settings"><svg class="i"><use href="#i-settings"/></svg>Ajustes</button>
+  </nav>
+
+  <div id="scrim" hidden></div>
+
+  <section class="sheet short" id="sheet-layers" hidden aria-labelledby="h-layers">
+    <div class="sheet-head">
+      <h2 id="h-layers">Capas</h2>
+      <button class="btn small primary" id="btn-add-mbtiles"><svg class="i"><use href="#i-plus"/></svg>MBTiles</button>
+      <button class="icon-btn" data-close aria-label="Cerrar"><svg class="i"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sheet-body">
+      <p class="hint">Arriba en la lista = arriba en el mapa. Toca el nombre para ir a la capa.</p>
+      <ul class="layer-list" id="layer-list"></ul>
+      <p class="hint">Los MBTiles quedan guardados en este navegador y funcionan sin conexión. Se admiten MBTiles raster (png, jpg, webp) de cualquier tamaño.</p>
+    </div>
+  </section>
+
+  <section class="sheet" id="sheet-data" hidden aria-labelledby="h-data">
+    <div class="sheet-head">
+      <h2 id="h-data">Datos</h2>
+      <button class="icon-btn" data-close aria-label="Cerrar"><svg class="i"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sheet-body">
+      <input class="input" id="data-search" type="search" placeholder="Buscar estructura, estación, unidad, notas…" autocomplete="off">
+      <div class="seg" id="data-filter" role="radiogroup" aria-label="Filtrar">
+        <label><input type="radio" name="dfilter" value="all" checked><span id="f-all">Todos</span></label>
+        <label><input type="radio" name="dfilter" value="plane"><span id="f-plane">Planos</span></label>
+        <label><input type="radio" name="dfilter" value="line"><span id="f-line">Líneas</span></label>
+      </div>
+      <ul class="data-list" id="data-list"></ul>
+    </div>
+  </section>
+
+  <section class="sheet short" id="sheet-detail" hidden aria-labelledby="h-detail">
+    <div class="sheet-head">
+      <h2 id="h-detail">Dato</h2>
+      <button class="icon-btn" data-close aria-label="Cerrar"><svg class="i"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sheet-body" id="detail-body"></div>
+  </section>
+
+  <section class="sheet short" id="sheet-export" hidden aria-labelledby="h-export">
+    <div class="sheet-head">
+      <h2 id="h-export">Exportar</h2>
+      <button class="icon-btn" data-close aria-label="Cerrar"><svg class="i"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sheet-body" id="export-body"></div>
+  </section>
+
+  <section class="sheet" id="sheet-settings" hidden aria-labelledby="h-settings">
+    <div class="sheet-head">
+      <h2 id="h-settings">Ajustes</h2>
+      <button class="icon-btn" data-close aria-label="Cerrar"><svg class="i"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="sheet-body" id="settings-body"></div>
+  </section>
+
+  <section id="form-page" hidden aria-labelledby="h-form">
+    <div class="page-head">
+      <button class="icon-btn" id="form-back" aria-label="Volver"><svg class="i"><use href="#i-back"/></svg></button>
+      <h2 id="h-form">Nuevo dato</h2>
+      <button class="icon-btn" id="form-delete" aria-label="Eliminar dato" hidden><svg class="i"><use href="#i-trash"/></svg></button>
+    </div>
+    <div class="page-body"><form class="stack" id="form" novalidate></form></div>
+    <div class="page-foot">
+      <button class="btn" id="form-save-new" type="button"><svg class="i"><use href="#i-plus"/></svg>Guardar y otro</button>
+      <button class="btn primary" id="form-save" type="button">Guardar</button>
+    </div>
+  </section>
+
+  <div id="dialog" hidden role="dialog" aria-modal="true" aria-labelledby="dlg-title">
+    <div class="box">
+      <h3 id="dlg-title"></h3>
+      <p id="dlg-text"></p>
+      <div class="row">
+        <button class="btn" id="dlg-cancel">Cancelar</button>
+        <button class="btn primary" id="dlg-ok">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="busy" hidden><div class="box"><div class="spin"></div><span id="busy-text">Cargando…</span></div></div>
+  <div id="toast" hidden role="status"></div>
+  <input type="file" id="file-input" multiple hidden>
+</div>
